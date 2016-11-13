@@ -22,10 +22,34 @@ public class RemoveDuplicates {
 		}
 		
 		
-		return newObj;
-		
-		
+		return newObj;	
 	}
+	
+	public Linkedlist iterateRemove(Linkedlist obj)
+	{
+		Node ptr1=obj.start;
+		Node ptr2=null;
+		
+		while(ptr1!=null)
+		{
+			ptr2=ptr1;
+			while(ptr2.link!=null)
+			{
+				if(ptr1.data==ptr2.link.data)
+				{
+					ptr2.link=ptr2.link.link;
+				}
+				else
+				{
+					ptr2=ptr2.link;
+				}
+			}
+			ptr1=ptr1.link;
+		}
+		return obj;
+	}
+	
+	
 	
 	public static void main(String[] args)
 	{
@@ -47,6 +71,10 @@ public class RemoveDuplicates {
 		RemoveDuplicates obj1=new RemoveDuplicates();
 		Linkedlist obj3=obj1.removeDup(obj);
 		System.out.println("Printing after removing duplicants");
+		obj3.display();
+		
+		obj3=obj1.iterateRemove(obj);
+		System.out.println("Printing after removing duplicants using iterative method");
 		obj3.display();
 		
 	}
